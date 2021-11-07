@@ -1,0 +1,107 @@
+<% formatNewLine = s => s.split("\n").join("<br>") %>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Search</title>
+    <!-- meta, styles, fonts, scripts as partial -->
+    <%- include("partials/meta"); %>
+    <!-- page specific js -->
+    <script src="/static/scripts/search.js"></script>
+  </head>
+  <body class="search-page">
+    <!-- nav bar -->
+    <%- include("partials/nav", { active: 'search' }); %>
+    <div class="container">
+      <form class="search" method="POST" action="/search">
+        <select id="search-type" name="search-type">
+          <option value="1" selected>Inventions</option>
+          <option value="2">Practisioners</option>
+          <option value="3">Diseases</option>
+        </select>
+        <input type="text" id="search-key" name="search-key" autofocus placeholder="Enter name of Invention or Discovery" oninput="typing(this);">
+        <div class="suggestion-box">
+          <!-- search suggestion will be dynamically added here while typed -->
+        </div>
+        <button type="submit" id="search">Search</button>
+        <div class="description">Search for ancient Inventions and Discoveries</div>
+      </form>
+      <div class="search-result">
+        <!-- inventions and discoveries -->
+        <%
+          for(let i=0, n=type1.length; i<n; i++) {
+            const item = type1[i];
+            %>
+              <div class="result result-type-1">
+                <div class="title"><%- item.instrument_name %></div>
+                <div class="description">
+                  <img src="data:image/jpeg;base64,<%- item.image.toString('base64') %>" alt="Ancient Instrument Image" align="right">
+                  <%- item.description %>
+                </div>
+                <div class="sub-title">Modern Usage</div>
+                <div class="description">
+                  <img src="data:image/jpeg;base64,<%- item.modern_image.toString('base64') %>" alt="Modern Instrument Image" align="left">
+                  <%- item.modern_usage %>
+                </div>
+                <% if(item.reference != null) { %>
+                  <div class="sub-title">Reference</div>
+                  <div class="reference"><%- formatNewLine(item.reference) %></div>
+                <% } %>
+              </div>
+            <%
+          }
+          <!-- Practisioners -->
+          for(let i=0, n=type2.length; i<n; i++) {
+            const item = type2[i];
+            %>
+              <div class="result result-type-2">
+                <div class="title"><%- item.common_name %></div>
+                <div class="sub-title"><%- item.full_name %></div>
+                <div class="description">
+                  <img src="data:image/jpeg;base64,<%- item.image.toString('base64') %>" alt="image" align="right">
+                  <%- item.biodata %>
+                </div>
+                <div class="sub-title">Contributions</div>
+                <div class="description"><%- item.contributions %></div>
+                <div class="sub-title">Inventions</div>
+                <div class="description"><%- item.inventions %></div>
+                <% if(item.reference != null) { %>
+                  <div class="sub-title">Reference</div>
+                  <div class="reference"><%- formatNewLine(item.reference) %></div>
+                <% } %>
+              </div>
+            <%
+          }
+          <!-- diseases and treatments -->
+          for(let i=0, n=type3.length; i<n; i++) {
+            const item = type3[i];
+            %>
+              <div class="result result-type-2">
+                <div class="title"><%- item.disease_name %></div>
+                <div class="sub-title">Ancient Treatment</div>
+                <div class="description"><%- item.ancient_treatment %></div>
+                <div class="sub-title">Modern Treatment</div>
+                <div class="description"><%- item.modern_treatment %></div>
+                <% if(item.reference != null) { %>
+                  <div class="sub-title">Reference</div>
+                  <div class="reference"><%- formatNewLine(item.reference) %></div>
+                <% } %>
+              </div>
+            <%
+          }
+          <!-- no results -->
+          if((type1.length + type2.length + type3.length) == 0) {
+            if(isSearch) {
+              %>
+                <div class="no-result type-search"></div>
+              <%
+            } else {
+              %>
+                <div class="no-result type-not-search"></div>
+              <%
+            }
+          }
+        %>
+      </div>
+    </div>
+  </body>
+</html>

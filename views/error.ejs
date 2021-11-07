@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Error - 500</title>
+    <!-- meta, styles, fonts, scripts as partial -->
+    <%- include("partials/meta"); %>
+  </head>
+  <body>
+    <!-- nav bar -->
+    <%- include("partials/nav", { active: null }); %>
+    <div class="container home-container">
+      <div class="not-found">
+        <div class="title">Error</div>
+        <div class="description"><%- error %></div>
+      </div>
+    </div>
+  </body>
+</html>

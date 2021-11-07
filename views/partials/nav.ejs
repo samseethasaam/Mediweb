@@ -1,0 +1,18 @@
+<% setActiveClass = button => button == active ? "button active":"button" %>
+<nav>
+  <!-- app title and icon -->
+  <div class="wrapper">
+    <a class="app" href="/home">
+      <div class="app-icon"></div>
+      <div class="title">
+        <div class="app-name">MediWeb</div>
+      </div>
+    </a>
+  </div>
+  <!-- nav items -->
+  <div class="menu">
+    <a class="<%- setActiveClass('home'); %>" href="/home">Home</a>
+    <a class="<%- setActiveClass('search'); %>" href="/search">Search</a>
+    <!-- <a class="<%- setActiveClass('about'); %>" href="/about">About</a> -->
+  </div>
+</nav>

@@ -1,0 +1,11 @@
+{
+  "db": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "medical"
+  },
+  "app": {
+    "port": 5000
+  }
+}

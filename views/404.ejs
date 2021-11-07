@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>404 - Page Not Found</title>
+    <!-- meta, styles, fonts, scripts as partial -->
+    <%- include("partials/meta"); %>
+  </head>
+  <body>
+    <!-- nav bar -->
+    <%- include("partials/nav", { active: null }); %>
+    <div class="container home-container">
+      <div class="not-found">
+        <div class="title">404</div>
+        <div class="description">Page not found</div>
+      </div>
+    </div>
+  </body>
+</html>

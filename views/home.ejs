@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>MediWeb</title>
+    <%- include("partials/meta"); %>
+  </head>
+  <body class="home-page">
+    <!-- nav bar -->
+    <%- include("partials/nav", { active: 'home' }); %>
+    <div class="container">
+      <!-- description -->
+      <div class="left">
+        <div class="title">Welcome to the Ancient Islamic medical practices and current medical practices</div>
+        <div class="sub-title">Lets grasp the knowledge on medical practices of two eras. Ancient Islamic era and the current medical era</div>
+        <div class="button-container">
+          <a class="button active dark" href="/search">Search</a>
+          <!-- <a class="button active dark" href="/search">Search 2</a>
+          <a class="button active dark" href="/search">Search 3</a> -->
+        </div>
+      </div>
+      <!-- home image -->
+      <div class="right">
+        <div class="image"></div>
+      </div>
+    </div>
+  </body>
+</html>
